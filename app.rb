@@ -170,7 +170,7 @@ error ArgumentError do
 end
 
 #CommentService.blocked_hashes = Content.mongo_client[:blocked_hash].find(nil, projection: {hash: 1}).map { |d| d["hash"] }
-CommentService.blocked_hashes = Content.mongo_session[:blocked_hash].find.select(hash: 1).each.map {|d| d["hash"]}
+CommentService.blocked_hashes = Content.mongo_client[:blocked_hash].find.select(hash: 1).each.map {|d| d["hash"]}
 def get_db_is_master
   Mongoid::Clients.default.command(isMaster: 1)
 end
